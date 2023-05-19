@@ -39,7 +39,7 @@ const ChannelForm: React.FC<ChannelFormProps> = () => {
     } catch (error) {
       console.error(error);
     }
-    route.push('/');
+    route.push('/message');
   };
 
   return (
@@ -65,7 +65,7 @@ const ChannelForm: React.FC<ChannelFormProps> = () => {
         {errors.type && <p>{errors.type.message}</p>}
       </div>
 
-      <button type="submit">Create channel</button>
+      <button type="submit">Start chat</button>
     </form>
   );
 };

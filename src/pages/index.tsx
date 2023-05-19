@@ -1,13 +1,13 @@
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import Acceuil from '@/components/Acceuil';
+import Login from '@/components/Login';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
     <div>
-        <Acceuil/>
+        <Login/>
     </div>
     
   )
