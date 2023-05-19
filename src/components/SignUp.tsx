@@ -58,7 +58,7 @@ const Signup: React.FC = () => {
           <input type="password" {...register('password')} />
           {errors.password && <span>{errors.password.message}</span>}
         </div>
-        <button type="submit">Sign In</button>
+        <button type="submit">Create channel</button>
       </form>
     </div>
   );
