@@ -36,7 +36,7 @@ const Login: React.FC = () => {
     } catch (error) {
       console.error(error);
     }
-    route.push('/');
+    route.push('/channel');
   };
   const onSubmitSignup = () => {
     route.push('/signUp');

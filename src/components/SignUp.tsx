@@ -36,7 +36,7 @@ const Signup: React.FC = () => {
     } catch (error) {
       console.error(error);
     }
-    route.push('/');
+    route.push('/channel');
   };
 
   return (
