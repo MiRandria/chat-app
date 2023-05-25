@@ -23,24 +23,18 @@ const Login: React.FC = () => {
   const route = useRouter();
   const onSubmit = async (data: LoginFormValues) => {
     try {
-      const response = await fetch('http://localhost:8080/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const responseData = await response.json();
-      console.log(responseData);
+      const response = await axios.post('http://localhost:8080/users/login', data);
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
     route.push('/channel');
   };
+
   const onSubmitSignup = () => {
     route.push('/signUp');
   };
+
   return (
     <div>
       <h1>Login</h1>
@@ -56,7 +50,6 @@ const Login: React.FC = () => {
           {errors.password && <span>{errors.password.message}</span>}
         </div>
         <button type="submit">Sign In</button>
-        
       </form>
       <button onClick={onSubmitSignup}>Sign Up</button>
     </div>

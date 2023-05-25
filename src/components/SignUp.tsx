@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import Router, { useRouter } from 'next/router';
+import axios from 'axios';
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
@@ -23,16 +24,8 @@ const Signup: React.FC = () => {
   const route = useRouter();
   const onSubmit = async (data: SignupFormValues) => {
     try {
-      const response = await fetch('http://localhost:8080/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const responseData = await response.json();
-      console.log(responseData);
+      const response = await axios.post('http://localhost:8080/users', data);
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }

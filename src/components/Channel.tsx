@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const schema = yup.object().shape({
   name: yup.string().required('Le nom du canal est requis.'),
@@ -26,16 +27,8 @@ const ChannelForm: React.FC<ChannelFormProps> = () => {
   const route = useRouter();
   const onSubmit = async (data: ChannelFormData) => {
     try {
-      const response = await fetch('http://localhost:8080/channel', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const responseData = await response.json();
-      console.log(responseData);
+      const response = await axios.post('http://localhost:8080/channel', data);
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -45,7 +38,7 @@ const ChannelForm: React.FC<ChannelFormProps> = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <h1>Create channel</h1>
+      <h1>Create channel</h1>
         <label>Channel name:</label>
         <input type="text" {...register('name')} />
         {errors.name && <p>{errors.name.message}</p>}
