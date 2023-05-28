@@ -24,11 +24,12 @@ const Login: React.FC = () => {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       const response = await axios.post('http://localhost:8080/users/login', data);
+      route.push('/channel');
       console.log(response.data);
     } catch (error) {
       console.error(error);
     }
-    route.push('/channel');
+    
   };
 
   const onSubmitSignup = () => {
