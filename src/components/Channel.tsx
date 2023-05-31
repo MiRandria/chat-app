@@ -60,13 +60,15 @@ const route = useRouter();
         {errors.name && <p>{errors.name.message}</p>}
       </div>
       <div>
-        <h1>Liste des utilisateurs</h1>
-        <ul>
-          {users.map(user => (
-            <p key={user.name}>Nom : {user.name}</p>
-        ))}
-      </ul>
-    </div>
+        <h1>Users</h1>
+        <select multiple>
+          <optgroup label="À">
+            {users.map(user => (
+              <option key={user.name}>{user.name}</option>
+            ))}
+          </optgroup>
+        </select>
+      </div>
 
       <div>
         <label>Channel type:</label>

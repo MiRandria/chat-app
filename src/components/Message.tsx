@@ -38,8 +38,12 @@ const ChatPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    const headers = {
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJlbGluLm1hc2tAdGVzdC5jb20iLCJpYXQiOjE2ODUwODQ2NzB9.q2XthQoKxkD7j-y20HzAVKD5WaH0P9jcIUBl5XFajFk',
+      'Content-Type': 'application/json',
+    } 
     // Récupérer la liste des user
-    axios.get('http://localhost:8080/user').then((response) => {
+    axios.get('http://localhost:8080/users',{headers}).then((response) => {
       setUsers(response.data);
     });
   }, []);
