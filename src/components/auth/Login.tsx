@@ -4,32 +4,39 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Router, { useRouter } from 'next/router';
 import * as yup from 'yup';
 import axios from 'axios';
-
-const schema = yup.object().shape({
-  email: yup.string().required('Email is required').email('Invalid email'),
-  password: yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
-});
+import { BASE_URL } from '../utils/base';
+import { useCookies } from 'react-cookie';
 
 interface LoginFormValues {
   email: string;
   password: string;
 }
 
-const Login: React.FC = () => {
+export default function Login() {
+  const route = useRouter();
+  const [cookies, setCookie] = useCookies(['token']);
+  const schema = yup.object().shape({
+    email: yup.string().required('Email is required').email('Invalid email'),
+    password: yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
+  });
+  
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormValues>({
     resolver: yupResolver(schema),
   });
 
-  const route = useRouter();
   const onSubmit = async (data: LoginFormValues) => {
     try {
-      const response = await axios.post('http://localhost:8080/users/login', data);
-      route.push('/channel');
-      console.log(response.data);
+      const response = await axios.post(BASE_URL+'/users/login', data);
+      const token = response.data.user.token; 
+      const options = {
+        path: '/'
+      }; 
+      setCookie("token", token, options); 
+      
+      route.push('/profile');
     } catch (error) {
       console.error(error);
     }
-    
   };
 
   const onSubmitSignup = () => {
@@ -57,4 +64,3 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
