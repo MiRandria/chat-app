@@ -27,6 +27,10 @@ const CreateChannel: React.FC<ChannelFormProps> = () => {
   interface User {
     name: string;
   }
+
+  const onSubmitEdit = () => {
+    route.push('/editChannel');
+  };
   const [users, setUsers] = useState<User[]>([]);
   const getUsers = async () => {
     const headers = {
@@ -83,6 +87,7 @@ const route = useRouter();
       </div>
 
       <button type="submit">Start chat</button>
+      <button onClick={onSubmitEdit}>Edit channel</button>
     </form>
   );
 };

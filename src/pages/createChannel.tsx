@@ -1,9 +1,9 @@
-import CreateChannel from '@/components/auth/channel/CreateChannel';
+import CreateChannel from '@/components/channel/CreateChannel';
 import MySideNav from '@/components/Sidebar';
 import React, { useEffect } from 'react';
 
 
-const EditChannelPage: React.FC = () => {
+const CreateChannelPage: React.FC = () => {
   return (
     <div>
       <MySideNav/>
@@ -14,4 +14,4 @@ const EditChannelPage: React.FC = () => {
   );
 };
 
-export default EditChannelPage;
+export default CreateChannelPage;

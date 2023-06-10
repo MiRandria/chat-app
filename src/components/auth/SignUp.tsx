@@ -29,7 +29,7 @@ const Signup: React.FC = () => {
     } catch (error) {
       console.error(error);
     }
-    route.push('/channel');
+    route.push('/profile');
   };
 
   return (

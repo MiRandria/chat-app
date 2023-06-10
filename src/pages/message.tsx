@@ -7,7 +7,7 @@ import React, { useEffect } from 'react';
 const MessagePage: React.FC = () => {
   return (
     <div>
-      
+      <MySideNav/>
       <Message text={''} />
     </div>
   );
